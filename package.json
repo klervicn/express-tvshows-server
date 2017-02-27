@@ -1,0 +1,8 @@
+{
+  "name": "express-tvshows-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/klervicn/express-tvshows-server",
+  "author": "klervicn <corbel.klervi@gmail.com>",
+  "license": "MIT"
+}
