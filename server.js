@@ -19,6 +19,7 @@ series[1] = {name: 'Dr Who', url: 'http://www.hbc333.com/data/out/71/46987055-dr
 series[2] = {name: 'Pokemon', url: 'http://cdn.bulbagarden.net/upload/thumb/7/70/079Slowpoke.png/250px-079Slowpoke.png'}
 series[3] = {name: 'Orange is the new black', url: 'https://upload.wikimedia.org/wikipedia/commons/9/9c/Orange_is_the_new_Black.png'}
 
+// POST /: insère une nouvelle série et retourne son identifant généré par le serveur
 app.post('/', (req, res, next) => {
   const name = req.body.name
   const id = String(uuid())
@@ -29,7 +30,7 @@ app.post('/', (req, res, next) => {
   next()
 })
 
-//POST /: insère une nouvelle série et retourne son identifant généré par le serveur
+// POST /: insère une nouvelle série et retourne son identifant généré par le serveur
 app.post('/:tvShowId', (req, res, next) => {
   const name = req.body.name
   const idSerie = req.params.tvShowId
@@ -54,11 +55,10 @@ app.get('/:tvShowId', (req, res, next) => {
   const selectedSerie = series[req.params.tvShowId]
   const seasonsArray = []
 
-  for (id in seasons){
-    if (seasons[id].idSerie === req.params.tvShowId ){
+  for (id in seasons) {
+    if (seasons[id].idSerie === req.params.tvShowId) {
       seasonsArray.push(seasons[id].name)
     }
-
   }
 
   res.write('Serie ' + req.params.tvShowId + ' : ' + JSON.stringify(selectedSerie.name) + ' Saisons : ' + JSON.stringify(seasonsArray))
