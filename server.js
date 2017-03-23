@@ -30,7 +30,7 @@ app.post('/', (req, res, next) => {
   next()
 })
 
-// POST /: insère une nouvelle série et retourne son identifant généré par le serveur
+// POST /: insère une nouvelle saison et retourne son identifant généré par le serveur
 app.post('/:tvShowId', (req, res, next) => {
   const name = req.body.name
   const idSerie = req.params.tvShowId
