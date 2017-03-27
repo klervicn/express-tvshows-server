@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
+const slugify = require('slugify')
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true}))
@@ -12,21 +13,21 @@ series['Pokemon'] = {url: 'http://cdn.bulbagarden.net/upload/thumb/7/70/079Slowp
 series['Orange_is_the_new_Black'] = {url: 'https://upload.wikimedia.org/wikipedia/commons/9/9c/Orange_is_the_new_Black.png', seasons: []}
 
 app.post('/', (req, res, next) => {
-  const name = req.body.name
+  const name = slugify(req.body.name, '_')
   const url = req.body.url
   const seasons = []
 
   series[name] = {url, seasons}
-  res.send(name + ' ajoutée')
+  res.json(name)
   next()
 })
 
 app.post('/:tvShowName', (req, res, next) => {
-  const serieName = req.params.tvShowName
-  const seasonName = req.body.name
-
-  series[serieName].seasons.push(seasonName)
-  res.send('Nouvelle saison ajoutée à ' + serieName + ' : ' + seasonName)
+  const seriesName = req.params.tvShowName
+  const name = req.body.name
+  series[seriesName].seasons.push(name)
+  //res.send('Nouvelle saison ajoutée à ' + seriesName + ' : ' + name)
+  res.json(series[seriesName].seasons)
   next()
 })
 
