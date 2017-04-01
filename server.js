@@ -25,8 +25,8 @@ app.post('/', (req, res, next) => {
   if (!isSeriesExisting(name)) {
     series[name] = {url, seasons}
     res.json(name)
-    next()
-  } else next()
+  }
+  next()
 })
 
 app.post('/:tvShowName', (req, res, next) => {
@@ -37,9 +37,9 @@ app.post('/:tvShowName', (req, res, next) => {
     if (series[seriesName].seasons.indexOf(seasonName) === -1) {
       series[seriesName].seasons.push(seasonName)
       res.json(series[seriesName].seasons)
-      next()
-    } else next()
-  } else next()
+    }
+  }
+  next()
 })
 
 app.get('/', (req, res, next) => {
