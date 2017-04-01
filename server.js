@@ -63,7 +63,7 @@ app.use((err, req, res, next) => {
   res.status(500).send('Not found !')
 })
 
-app.use(function (req, res, next) {
+app.use((req, res, next) => {
   res.setHeader('Content-Type', 'text/plain')
   res.send(404, 'Not found !')
 })
